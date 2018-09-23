@@ -3543,11 +3543,14 @@ app.get('/', (req, res) => {
         paper = getPaper();
     }
 
-    //res.send(`<a href=${paper.url}>${paper.title}</a>`);
-    res.redirect(paper.url);
+    let style = `<style>div.text {background-color: lightgrey; text-align: center; font-family: Arial, sans-serif; border-radius: 25px; width:50em; height:6em; margin: 0; position: absolute; top: 50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%) } div.link {background-color: lightgrey; text-align: center; font-family: Arial, sans-serif; border-radius: 25px; width:50em; height:3em; margin: 0; position: absolute; top: 55%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%) } div.center {height: 30em; position: relative }</style>`;
+    let loading = `<div class=center><div class=text>redirecting you to </div><br><div class=link>${paper.title}</div></div>`;
+    let script = `<script>setTimeout(function (){window.location.href = "${paper.url}"}, 5000)</script>`;
+
+    res.send(`${style}${loading}${script}`);
 });
 
-app.listen(3000, () => console.log('tbh-generator listening on port 3000!'))
+app.listen(1337, () => console.log('scholar link generator listening on port 1337!'));
 
 function getPaper(){
     return cache.results[Math.floor((Math.random() * cache.results.length-1) + 1)]
