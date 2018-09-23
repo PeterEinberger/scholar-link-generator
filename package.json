@@ -1,0 +1,9 @@
+{
+  "name": "scholar-link-generator",
+  "dependencies": {
+    "express": "^4.16.3",
+    "google-scholar": "^1.5.1"
+  },
+  "license": "MIT",
+  "main": "./server.js"
+}
